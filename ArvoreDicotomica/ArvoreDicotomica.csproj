@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArvDicotomica.cs" />
+    <Compile Include="ListaLigadaSimples.cs" />
     <Compile Include="Nodo.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

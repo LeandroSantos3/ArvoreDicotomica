@@ -8,6 +8,7 @@
  */
 using System;
 using System.Threading;
+using System.IO;
 
 namespace ArvoreDicotomica
 {
@@ -16,17 +17,19 @@ namespace ArvoreDicotomica
 		static void Main(String[] args)    
 		{
 			ArvoreDicotomica arv = new ArvoreDicotomica();
+			ListaLigadaSimples lst = new ListaLigadaSimples();
 			
 	
         while (true)
         {
         	Console.Clear();
             Console.WriteLine("Menu:");
-            Console.WriteLine("1 - Iniciar Novo Jogo");
-            Console.WriteLine("2 - Mostrar o nome de todos os objetos possíveis de identificar até então");
+            Console.WriteLine("1 - Iniciar Novo Jogo - já guardando na listagem");
+            Console.WriteLine("2 - Mostrar o nome de todos os objetos possíveis de identificar até então - guardados na listagem");
             Console.WriteLine("0- Sair");
 
             String choice = Console.ReadLine();
+				
             switch (choice)
             {            		
             		
@@ -36,12 +39,18 @@ namespace ArvoreDicotomica
             		Console.WriteLine("Saindo ...");
             		Thread.Sleep(3000);
                     return;
-                case "1":                    
-                    arv.Play();                    
+                case "1":  
+                                        
+                    lst = arv.Play();
+					Console.WriteLine("Digite algo para continuar...");
+                    Console.ReadKey(); 
                     break;
                     
                    case "2":
-                   	
+                    Console.WriteLine("Os objectos identificados até ao momento:");
+                    lst.Exibir();
+                    Console.WriteLine("Digite algo para continuar...");
+                    Console.ReadKey(); 
                 	break;
              	}
     		}
