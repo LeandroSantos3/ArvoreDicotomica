@@ -15,83 +15,87 @@ namespace ArvoreDicotomica
 	class ArvoreDicotomica
 {
 		
-	
+		/// <param name="nodoRaiz">Nodo raiz da arvore criada</param>
+		/// <param name="nodoRaiz.esq">nodo à esquerda - representa o sim</param>
+		/// <param name="nodoRaiz.dir">Nodo à direita - representa o não</param>	
+		/// <param name="nodoAux">Nodo auxiliar que percorreria a sequencia de nodos</param>
+		
     public void Play()	
     {
-    	Console.WriteLine("Pense num tema (sala de aulas) e um objecto...");
-    	Console.WriteLine("Me faça uma pergunta e responda com (s)im ou (n)ao que vou aprendendo ;)");
-    	String perguntaRaiz = Console.ReadLine();
+    	//Esse troço de código só será executado na primeira vez, para termos uma mini-arvore de modo a que possa iniciar o jogo e assim poder me orientar
+     	// a atribuição de nodos
     	
-    	Nodo nodoRaiz = new Nodo(perguntaRaiz); // a raiz do nodo
-    	Console.WriteLine("Qual seria o objecto se (s)im?");
-    	String obj = Console.ReadLine();  //aprende o obj, por ser primeira vez  	
-    		nodoRaiz.esq =  new Nodo(obj);
+    	Console.WriteLine("Pense num tema (sala de aulas) e num objecto...");
+    	Console.WriteLine("Me faça uma pergunta e responda com (s)im ou (n)ao ; Que vou aprendendo ao longo do jogo ;)");
+    	String perguntaRaiz = Console.ReadLine(); // a pergunta que daria inicio ao tema
     	
-    	Console.WriteLine("Qual seria o objecto se (n)ao?");
+    	Nodo nodoRaiz = new Nodo(perguntaRaiz); // a raiz do nodo terá a perguntaRaiz - assim seria de um tema de inteeresse do user - tornando-o mais intuitivo
+    	Console.WriteLine("Qual seria o objecto se a resposta fosse (s)im?");
+    	String obj = Console.ReadLine();   	
+    		nodoRaiz.esq =  new Nodo(obj); //novo valor adicionado no nodo.esq
+    	
+    	Console.WriteLine("Qual seria o objecto se a resposta fosse (n)ao?");
     	String obj1 = Console.ReadLine();
-	    	nodoRaiz.dir = new Nodo(obj1);  
+    		nodoRaiz.dir = new Nodo(obj1);  // novo valor adicionado no nodo.dir
     		
-        Nodo nodoAux = nodoRaiz;
+        Nodo nodoAux = nodoRaiz; //seria o mesmo raciocinio em aulas para termos um nodoAux para percorrer a arvore
         
-        bool repeat = true;
-        while(repeat)
+        while(true) // repete sempre - loop infinito
         {
         	//Esse metodo irá percorrer sempre os nodos.raizes, pois se o mesmo tiver filhos é prq é uam pergunta
         	// senão continua a ser uma pergunta, então vamos de forma sucessiva percorrer todas as perguntas
         	
-        	while(nodoAux.dir!=null || nodoAux.esq != null){
-        			
-        			Console.WriteLine(nodoAux.raiz);
+        	while(nodoAux.dir!=null || nodoAux.esq != null) // aqui ele procura sempre até encontrar um nodo folha(filho) que não teria novos filhos ainda
+        													// caso a encontre passaria para a linha 65
+        	{        			
+        			Console.WriteLine(nodoAux.raiz); // sempre faria a pergunta, até encontrar o nodo filho, caso não seja um filho passaria pra próxima
         			String respostasSucessivas = Console.ReadLine(); 
         			
-        			if(respostasSucessivas.ToLower()=="s" || respostasSucessivas.ToLower()=="sim" ){
+        			if(respostasSucessivas.ToLower()=="s" || respostasSucessivas.ToLower()=="sim" )
+        			{
         				
         				nodoAux = nodoAux.esq; // se for sim, ele passa para o proximo nnodo, que será a pergunta que irá deferenciar os dois filhos de baixo
         			}
-        			else{
+        			else
+        			{
         				nodoAux = nodoAux.dir; // caso contrário
-        			}
-        			
-        		}        	
+        			}        			
+    		}        	
         	
-        	//Console.WriteLine("\n\nVamos jogar agora e mostrar o que aprendi .....");
-        	Console.WriteLine("a resposta seria : --- " + nodoAux.raiz + " --- S/N  ?");
-        	String resposta = Console.ReadLine();
+        	Console.WriteLine("a resposta seria : --- " + nodoAux.raiz + " --- (s)im/(n)ão  ?"); //testa a primeira solução - que estaria na raiz no nodo
+    	String resposta = Console.ReadLine();													 // caso não seja essa passaria para a linha 73
 			
-        	if(resposta.ToLower()=="s" || resposta.ToLower()=="sim"){
-        		
+        	if(resposta.ToLower()=="s" || resposta.ToLower()=="sim")
+        	{        		
         		Console.WriteLine("Acertei.... :)");        
-        	}
-        	
-    			// Aqui que começa o processo de aprendizagem
-        	else{
-    			
-    			Console.WriteLine("Qual seria o objecto então?");
+        	}        	
+			// Aqui que começa o processo de aprendizagem
+        	else
+        	{    			
+    			Console.WriteLine("Qual seria o objecto então?"); // isso tornaria o nodo filho - esq.raiz
   				String diffObj = Console.ReadLine(); 
   				
-  				Console.WriteLine("o que o torna diferente?");
+  				Console.WriteLine("o que o torna diferente?"); // isso tornaria o nodo pergunta -  nodo.raiz
         		String diff = Console.ReadLine();  
         		
-        		Nodo novo = new Nodo(diffObj);
-        		nodoAux.esq = novo;
-        		nodoAux.dir = new Nodo(nodoAux.raiz);
-        		nodoAux.raiz = diff;
-//        		nodoAux.raiz = diff;				
-//				nodoAux.esq = new Nodo(diffObj);
-//				nodoAux.dir = new Nodo(nodoAux.raiz);
+        		Nodo aux = new Nodo(diffObj); //criar um nodo aux para passarmos o novo valor, senão a perderiamos
+        		nodoAux.esq = aux; // igualando o valor
+        		nodoAux.dir = new Nodo(nodoAux.raiz); //criei um novo nodo que seria o da dir, mas teria como valor o valor que antes estava na esq
+        		nodoAux.raiz = diff; // tenho que resetar a raiz, de modo a que tenha a pergunta que diferencie os dois valores
 				
         		Console.WriteLine("Aprendi... um novo valor:)" );	
-    			}
-    			
+    			}   			
         		
-    			Console.WriteLine("Queres jogar de novo? [(S)/(N)ao)");
+    			Console.WriteLine("Queres jogar de novo? (s)im/(n)ão)");
     			String again = Console.ReadLine(); 
-	        		if(again == "n"){
-    				
-    				Console.WriteLine("Adeus...");
-        			break; //para sair od while	            			
-        			}    			
-    				nodoAux=nodoRaiz;
+	        		if(again == "n" || again == "nao" || again == "não")
+	        		{    				
+    					Console.WriteLine("Adeus...");
+        				break; //para sair do while	            			
+        			}
+        		
+				nodoAux=nodoRaiz; // isso seria o mais importante - pois teria que resetar o nodo, de modo a que quando voltasse no loop ele possa começar com a
+								 // perguntaRaiz - senão ele apresentaria a ultima pergunta que fiz e não a sequencia de nodos para chegar aos resultados
 	        }
 		}
 	}
