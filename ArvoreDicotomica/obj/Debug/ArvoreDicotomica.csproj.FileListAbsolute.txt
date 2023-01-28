@@ -1,0 +1,6 @@
+C:\Users\leand\OneDrive\Documentos\3ºAno 1ºSemetre\P3\ArvoreDicotomica\ArvoreDicotomica\obj\Debug\ArvoreDicotomica.csprojResolveAssemblyReference.cache
+C:\Users\leand\OneDrive\Documentos\3ºAno 1ºSemetre\P3\ArvoreDicotomica\ArvoreDicotomica\bin\Debug\ArvoreDicotomica.exe.config
+C:\Users\leand\OneDrive\Documentos\3ºAno 1ºSemetre\P3\ArvoreDicotomica\ArvoreDicotomica\bin\Debug\ArvoreDicotomica.exe
+C:\Users\leand\OneDrive\Documentos\3ºAno 1ºSemetre\P3\ArvoreDicotomica\ArvoreDicotomica\bin\Debug\ArvoreDicotomica.pdb
+C:\Users\leand\OneDrive\Documentos\3ºAno 1ºSemetre\P3\ArvoreDicotomica\ArvoreDicotomica\obj\Debug\ArvoreDicotomica.exe
+C:\Users\leand\OneDrive\Documentos\3ºAno 1ºSemetre\P3\ArvoreDicotomica\ArvoreDicotomica\obj\Debug\ArvoreDicotomica.pdb
